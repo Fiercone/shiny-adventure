@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <title>Aria</title>
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <div class="identity">
+        <div class="avatar" id="avatar">A</div>
+        <div class="info">
+          <h1>Aria</h1>
+          <span class="status" id="status">Ready</span>
+        </div>
+      </div>
+      <button id="settings-btn" class="icon-btn" title="Settings">⚙</button>
+    </header>
+
+    <main id="messages" class="messages"></main>
+
+    <footer class="input-area">
+      <button id="mic-btn" class="icon-btn mic" title="Voice input">🎤</button>
+      <textarea id="user-input" placeholder="Talk to Aria..." rows="1"></textarea>
+      <button id="send-btn" class="icon-btn send" title="Send">↑</button>
+    </footer>
+  </div>
+
+  <!-- First-run onboarding -->
+  <div id="onboarding-modal" class="modal hidden">
+    <div class="modal-content onboarding">
+      <h2>Hey. I’m Aria.</h2>
+      <p class="lead">I’m your personal AI companion. I stay with you across conversations, remember what matters, and talk with you naturally — including by voice.</p>
+
+      <div class="onboard-step" id="step-keys">
+        <h3>1. Add at least one API key</h3>
+        <p class="hint">Keys stay on your device only. I never send them anywhere except to the provider you choose.</p>
+        <label>OpenRouter (recommended — unlocks many models)</label>
+        <input type="password" id="onboard-openrouter" placeholder="sk-or-..." />
+        <label>Anthropic (Claude)</label>
+        <input type="password" id="onboard-claude" placeholder="sk-ant-..." />
+        <label>Google (Gemini)</label>
+        <input type="password" id="onboard-gemini" placeholder="AIza..." />
+      </div>
+
+      <div class="onboard-step" id="step-memory">
+        <h3>2. Tell me a little about you</h3>
+        <p class="hint">This becomes my long-term memory note. You can change it anytime. Even a few lines help a lot.</p>
+        <textarea id="onboard-memory" rows="7" placeholder="Examples:&#10;- Name / what you do&#10;- What you’re building or working toward&#10;- How you like to communicate&#10;- Anything I should always keep in mind"></textarea>
+      </div>
+
+      <div class="onboard-step" id="step-voice">
+        <h3>3. Voice</h3>
+        <label class="check">
+          <input type="checkbox" id="onboard-voice" checked />
+          Speak my replies aloud (you can change this later)
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button id="onboard-finish">Start talking</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Memory update modal -->
+  <div id="memory-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Memory update</h2>
+      <p class="hint">Aria noticed something worth remembering. Review and decide:</p>
+      <textarea id="memory-proposal" rows="10"></textarea>
+      <div class="modal-actions">
+        <button id="memory-accept">Accept</button>
+        <button id="memory-reject" class="secondary">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings modal -->
+  <div id="settings-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Settings</h2>
+      
+      <section>
+        <h3>API Keys</h3>
+        <label>Anthropic (Claude)</label>
+        <input type="password" id="key-claude" placeholder="sk-ant-..." />
+        
+        <label>Google (Gemini)</label>
+        <input type="password" id="key-gemini" placeholder="AIza..." />
+        
+        <label>OpenRouter</label>
+        <input type="password" id="key-openrouter" placeholder="sk-or-..." />
+      </section>
+
+      <section>
+        <h3>Memory Note</h3>
+        <p class="hint">This is injected into every conversation so Aria remembers you.</p>
+        <textarea id="memory-note" rows="6" placeholder="Who you are, what you're working on, preferences..."></textarea>
+      </section>
+
+      <section>
+        <h3>Voice</h3>
+        <label>
+          <input type="checkbox" id="voice-output" checked />
+          Speak replies aloud
+        </label>
+      </section>
+
+      <div class="modal-actions">
+        <button id="save-settings">Save</button>
+        <button id="close-settings" class="secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
+
+
